@@ -1,5 +1,12 @@
-export default function Logo() {
+import React from 'react';
+import Image from 'next/image';
+
+const Logo: React.FC = () => {
     return (
-        <img src="/logo.png" className="w-40 px-7 py-4 inline-block" />
+        <div className="logo">
+            <Image src="/logo.png" alt="Logo" width={100} height={100} />
+        </div>
     );
-}
+};
+
+export default Logo;

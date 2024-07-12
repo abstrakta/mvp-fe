@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BundleList from '../components/BundleList';
+import BundleList from '@/components/BundleList';
 
 // Mock data for bundles
 const bundles = Array.from({ length: 40 }).map((_, index) => ({
@@ -10,8 +10,10 @@ const bundles = Array.from({ length: 40 }).map((_, index) => ({
     description: `This is a brief description for bundle ${index + 1}, covering various scientific research documents.`
 }));
 
-const Bundles = () => {
+const BundlesPage: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const researchId = 1; // Replace this with the actual researchId you are using
 
     const filteredBundles = bundles.filter(bundle =>
         bundle.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -28,9 +30,9 @@ const Bundles = () => {
                 onChange={e => setSearchTerm(e.target.value)}
                 className="w-full p-2 mb-4 border rounded"
             />
-            <BundleList bundles={filteredBundles} />
+            <BundleList bundles={filteredBundles} researchId={researchId} viewMode={viewMode} />
         </div>
     );
 };
 
-export default Bundles;
+export default BundlesPage;
